@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <title>Bi Luxury</title>
+    <style>
+        a.navbar-brand.nav-hover:hover {
+            color: red;
+        }
+
+        .navbar-brand {
+            font-size: medium;
+        }
+
+        .nav-padding {
+            padding-top: 15px;
+            margin-left: 150px;
+        }
+
+        #nav-search {
+            border-radius: 20px;
+            width: 360px;
+            padding: 7px 5px 7px 15px;
+        }
+
+        .hd-link-title:hover {
+            color: red;
+        }
+
+        .nav-background {
+            background-color: white;
+        }
+
+        .bg-main {
+            background-image: url('https://s3.amazonaws.com/rm3.photos.prod.readmedia.com/students/4119765/cover-original/watercolor-background-1.jpg?1548185966');
+        }
+
+        .foot-inf > p {
+            margin: 0px 0px 5px;
+            font-family: sans-serif;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .a-undecoration li > a {
+            text-decoration: none;
+        }
+
+        .a-hover li > a:hover {
+            color: red;
+        }
+
+        .a-font li > a {
+            color: black;
+        }
+
+            .a-font li > a:hover {
+                color: red !important;
+            }
+
+        .card {
+            padding: 25px;
+            border: none;
+        }
+
+        .a-product {
+            color: black;
+            text-decoration: none;
+        }
+
+        .current-price {
+            font-weight: bold;
+        }
+
+        .div-new {
+            padding: 50px 0 50px;
+        }
+
+        .section-desc::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 2px;
+            background: #333333;
+            margin: 10px auto 50px;
+        }
+
+        .a-new-title {
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-top">
+        <nav class="navbar navbar-expand-lg fixed navbar-light bg-light" style="padding: 5px 40px;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><i class="fas fa-phone"></i><a class="navbar-brand nav-hover" href="#"> 0944328989  </a></li>
+                    <li><i class="fas fa-home"></i><a class="navbar-brand nav-hover" href="#"> Hệ thống <span style="font-weight: bold;">140</span> cửa hàng</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <i class="fas fa-sign-in-alt"></i>
+                        <a class="navbar-brand nav-hover" href="#"> Đăng nhập</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-user"></i>
+                        <a class="navbar-brand nav-hover" href="#"> Đăng kí</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="nav-main">
+        <nav class="site-header sticky-top py-1 nav-background">
+            <div class="container-fluid d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2" href="#">
+                    <img class="img-fluid" src="~/imgs/logo.png" alt="logo-icon" width="120">
+                </a>
+                <div class="nav-padding a-font">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">KHUYẾN MÃI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ÁO NAM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">BỘ VEST - SUIT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">QUẦN NAM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">PHỤ KIỆN NAM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">NỔI BẬT</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="d-flex">
+                                <input id="nav-search" class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn text-center nav-cart">
+                    <a href="#" style="text-decoration: none; color: black;">
+                        <div class="hd-link-icon">
+                            <i class="fas fa-cart-plus fa-2x"></i>
+                        </div>
+                        <div>
+                            <div class="hd-link-title">
+                                Giỏ hàng
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid main-body">
+            @RenderBody()
+        </div>
+
+        <footer class="container-fluid py-5">
+            <div class="row a-undecoration">
+                <div class="col-12 col-md-4">
+                    <h5>
+                        ĐĂNG KÝ NHẬN TIN
+                    </h5>
+                    <br>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Nhập email ..." aria-label="Email">
+                        <button style="background-color: #000000;" class="btn btn-outline-success" type="submit"><i style="color: aliceblue;" class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <br>
+
+                    <div class="foot-inf">
+                        <p>
+                            Đơn vị chủ quản: Công ty cổ phần thời trang Bimart
+                        </p>
+                        <p>
+                            Địa chỉ: Toà nhà Skyline, Nguyễn Khuyến, Văn Quán, Hà Đông, Hà Nội
+                        </p>
+                        <p>
+                            SĐT: 0944328989 - Email: cskh@biluxury.vn
+                        </p>
+                        <p>
+                            <p>Mã số thuế / Mã số doanh nghiệp: 0107273793</p>
+                            <p>Đăng ký lần đầu : 30/12/2015, Sở KHĐTHN - Đăng ký thay đổi lần thứ 4, ngày 05/07/2019, Sở KHĐTHN</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6 col-md a-font">
+                    <h5>GIỚI THIỆU</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Về thương hiệu</a></li>
+                        <li><a class="text-muted" href="#">Báo chí nói về Biluxury</a></li>
+                        <li><a class="text-muted" href="#">Mở đại lý</a></li>
+                        <li><a class="text-muted" href="#">Hệ thống showroom toàn quốc</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md a-font">
+                    <h5>CHÍNH SÁCH</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Chính sách Membership</a></li>
+                        <li><a class="text-muted" href="#">Chính sách thanh toán</a></li>
+                        <li><a class="text-muted" href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a class="text-muted" href="#">Chính sách đổi sản phẩm</a></li>
+                        <li><a class="text-muted" href="#">Bảo mật thông tin cá nhân</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md a-font">
+                    <h5>TIN TỨC</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Tư vấn phối đồi</a></li>
+                        <li><a class="text-muted" href="#">Thế giới thời trang</a></li>
+                        <li><a class="text-muted" href="#">Tin khuyến mãi</a></li>
+                        <li><a class="text-muted" href="#">Tin khai trương</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>KẾT NỐI VỚI CHÚNG TÔI</h5>
+                    <ul class="list-unstyled text-small" style="display: flex;">
+                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: blue;" class="fab fa-facebook"></i></a></li>
+                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: red;" class="fab fa-youtube"></i></a></li>
+                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: blueviolet;" class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap core JavaScript
+          ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+        </script>
+        <script src="../../assets/js/vendor/popper.min.js"></script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/vendor/holder.min.js"></script>
+        <script>
+            Holder.addTheme('thumb', {
+                bg: '#55595c',
+                fg: '#eceeef',
+                text: 'Thumbnail'
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
