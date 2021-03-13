@@ -37,9 +37,13 @@
             right: 0 !important;
             left: initial;
         }
+
+        .on-more {
+            display: none;
+        }
     </style>
 
-    <title>Home CMS</title>
+    <title>Quản lý BiLuxury</title>
 </head>
 
 <body>
@@ -68,23 +72,38 @@
                     </button>
                 </div>
                 <div class="list-group">
-                    <button class="list-group-item list-group-item-action"><i class="fas fa-table"></i> Danh mục bài viết</button>
-                    <button class="list-group-item list-group-item-action"><i class="far fa-edit"></i> Danh mục sản phẩm</button>
-                    <button class="list-group-item list-group-item-action"><i class="far fa-user"></i> Quản lý nhân viên</button>
-                    <button class="list-group-item list-group-item-action"><i class="fas fa-user-friends"></i> Quản lý khách hàng</button>
-                    <button class="list-group-item list-group-item-action"><i class="fas fa-file-invoice"></i> Đơn hàng</button>
-                    <button class="list-group-item list-group-item-action"><i class="fas fa-box-open"></i> Kho</button>
-                    <button class="list-group-item list-group-item-action"><i class="fas fa-trophy"></i> Thống kê</button>
+                    <button onclick="location.href='@Url.Action("Index", "News")'" class="list-group-item list-group-item-action"><i class="fas fa-table"></i> Quản lý bài viết</button>
+                    <button onclick="location.href='@Url.Action("index", "QLSanPham")'" class="list-group-item list-group-item-action"><i class="far fa-edit"></i> Quản lý sản phẩm</button>
+                    <button onclick="location.href='@Url.Action("index", "QLNhanVien")'" class="list-group-item list-group-item-action"><i class="far fa-user"></i> Quản lý nhân viên</button>
+                    <button onclick="location.href='@Url.Action("index", "QLKhachHang")'" class="list-group-item list-group-item-action"><i class="fas fa-user-friends"></i> Quản lý khách hàng</button>
+                    <button onclick="location.href='@Url.Action("index", "QLDonHang")'" class="list-group-item list-group-item-action"><i class="fas fa-file-invoice"></i> Đơn hàng</button>
+                    <button onclick="location.href='@Url.Action("index", "QLKho")'" class="list-group-item list-group-item-action"><i class="fas fa-box-open"></i> Kho</button>
+                    <button onclick="location.href='@Url.Action("index", "ThongKe")'" class="list-group-item list-group-item-action"><i class="fas fa-trophy"></i> Thống kê</button>
+                    <button id="on-active" class="list-group-item list-group-item-action"><i class="fas fa-chevron-down"></i> Xem thêm...</button>
+                    <button onclick="location.href='@Url.Action("index", "IMAGES")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-photo-video"></i> Thư viện ảnh</button>
+                    <button onclick="location.href='@Url.Action("index", "NhaCungCap")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-building"></i> Nhà cung cấp</button>
+                    <button onclick="location.href='@Url.Action("index", "LoaiSP")'" class="list-group-item list-group-item-action on-more"><i class="far fa-newspaper"></i> Loại sản phẩm</button>
+                    <button onclick="location.href='@Url.Action("index", "Feedback")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-comments"></i>Phản hồi từ khách hàng</button>
                 </div>
             </div>
-            <div class="col-sm-10" >
+            <div class="col-sm-10">
                 <div class="main-body">
                     @RenderBody()
                 </div>
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
     <script>
+        $(document).ready(function () {
+            $("#on-active").click(function () {
+                $(".fa-chevron-down").toggle("fast");
+                $(".on-more").toggle("slow");
+            });
+        });
     </script>
 </body>
 

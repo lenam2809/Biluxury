@@ -1,0 +1,35 @@
+﻿@model BILUXURY.Models.FEEDBACK
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+}
+
+<h2>Chi tiết comment của khách hàng có mã @Html.DisplayFor(model => model.MaKH)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            Ngày tạo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div>
+        <button type="button" title="back" class="btn btn-warning" style="margin-top: 15px;" onclick="location.href='@Url.Action("Index", "Feedback")'"><i class="fas fa-backward"></i> Trở về</button>
+    </div>
+</p>

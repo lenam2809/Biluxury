@@ -1,0 +1,23 @@
+﻿@model BILUXURY.Models.LOAISANPHAM
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+}
+
+
+<h3>Bạn chắc chắn muốn xóa loại sản phẩm @Html.DisplayFor(model => model.TenLoaiSP)?</h3>
+<div>
+<hr />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <div>
+                <button type="button" title="back" class="btn btn-warning" style="margin-top: 15px;" onclick="location.href='@Url.Action("Index", "LoaiSP")'"><i class="fas fa-backward"></i> Trở về</button>
+            </div>
+        </div>
+    }
+</div>

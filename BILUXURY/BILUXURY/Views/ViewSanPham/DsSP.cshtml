@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "DsSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sp = ViewBag.sp;
+}
+
+<div class="container">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.namelsp</li>
+        </ol>
+    </nav>
+    <div class="shadow p-3 bg-body rounded">
+        <h5>@ViewBag.lSp</h5>
+    </div>
+</div>
+<div class="row justify-content-center" style="padding-top: 50px;">
+    @foreach (var item in sp)
+    {
+        <div class="card col-3 text-center" style="padding: 50px 25px 5px 25px; border: none;">
+            <img src="@item.ImageLink" class="card-img-top" alt="...">
+            <div class="card-body text-lg-center">
+                <div class="product-info">
+                    <div class="product-title" style="font-size: small;">
+                        <a class="a-product" href="#">@item.TenSP</a>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">@item.Gia&#8363;</span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button id="btn-test" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

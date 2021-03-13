@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var dsnews = ViewBag.dsnews;
+}
+<div class="container-fluid">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tin khuyến mại</li>
+        </ol>
+    </nav>
+    <h3>Tin tức, tin khuyến mại</h3>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                @foreach (var item in dsnews)
+                {
+                    <div class="row g-0 mb-4">
+                        <div class="col-md-4">
+                            <img src="@item.NewImage" class="img-thumbnail" alt="..." width="340" height="228">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                                <small class="text-muted"><i class="fas fa-user"></i>  @item.CreatedBy</small>&nbsp;
+                                <small class="text-muted"><i class="fas fa-eye"></i>  @item.ViewCount</small>
+                                <h6>@item.Description</h6>
+                                <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.NewID })'">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="mt-5">
+                <h3>Bài viết gần đây</h3>
+            </div>
+            @foreach (var item in dsnews)
+            {
+                <div class="card mb-3 my-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="@item.NewImage" class="img-thumbnail" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <p class="card-title fw-bold" style="font-size: small;">@item.Title</p>
+                                <p><small class="text-muted"><i class="fas fa-user"></i>  @item.CreatedBy</small></p>
+                                <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.NewID })'"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

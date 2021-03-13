@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -122,11 +128,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\FeedbackController.cs" />
+    <Compile Include="Areas\Admin\LoaiSPController.cs" />
+    <Compile Include="Areas\Admin\NewsController.cs" />
+    <Compile Include="Areas\Admin\NhaCungCapController.cs" />
+    <Compile Include="Areas\Admin\QLDonHangController.cs" />
+    <Compile Include="Areas\Admin\QLKhachHangController.cs" />
+    <Compile Include="Areas\Admin\QLNhanVienController.cs" />
+    <Compile Include="Areas\Admin\QLSanPhamController.cs" />
+    <Compile Include="Areas\Admin\ThongKeController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchInfoController.cs" />
+    <Compile Include="Controllers\ViewNewsController.cs" />
+    <Compile Include="Controllers\ViewSanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,6 +160,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -147,25 +169,106 @@
     <Content Include="imgs\img3.png" />
     <Content Include="imgs\img4.png" />
     <Content Include="imgs\logo.png" />
+    <Content Include="imgs\news\new-img1.png" />
+    <Content Include="imgs\news\new-img2.png" />
+    <Content Include="imgs\news\new-img3.png" />
+    <Content Include="imgs\news\new-img4.png" />
+    <Content Include="imgs\news\new-img5.png" />
+    <Content Include="imgs\news\new-img6.png" />
+    <Content Include="imgs\news\new-img7.png" />
+    <Content Include="imgs\products\Aophong\p1.png" />
+    <Content Include="imgs\products\Aophong\p2.png" />
+    <Content Include="imgs\products\Aophong\p3.png" />
+    <Content Include="imgs\products\Aophong\p4.png" />
+    <Content Include="imgs\products\Aophong\p5.png" />
+    <Content Include="imgs\products\Aophong\p6.png" />
+    <Content Include="imgs\products\Aophong\p7.png" />
+    <Content Include="imgs\products\Aophong\p8.png" />
+    <Content Include="imgs\products\QuanAuNam\q1.png" />
+    <Content Include="imgs\products\QuanAuNam\q2.png" />
+    <Content Include="imgs\products\QuanAuNam\q3.png" />
+    <Content Include="imgs\products\QuanAuNam\q4.png" />
+    <Content Include="imgs\products\QuanAuNam\q5.png" />
+    <Content Include="imgs\products\QuanAuNam\q6.png" />
+    <Content Include="imgs\products\QuanAuNam\q7.png" />
+    <Content Include="imgs\products\QuanAuNam\q8.png" />
+    <Content Include="imgs\products\QuanNgo\n1.png" />
+    <Content Include="imgs\products\QuanNgo\n2.png" />
+    <Content Include="imgs\products\QuanNgo\n3.png" />
+    <Content Include="imgs\products\QuanNgo\n4.png" />
+    <Content Include="imgs\products\QuanNgo\n5.png" />
+    <Content Include="imgs\products\QuanShort\s1.png" />
+    <Content Include="imgs\products\QuanShort\s2.png" />
+    <Content Include="imgs\products\QuanShort\s3.png" />
+    <Content Include="imgs\products\QuanShort\s4.png" />
+    <Content Include="imgs\products\QuanShort\s5.png" />
+    <Content Include="imgs\products\QuanShort\s6.png" />
+    <Content Include="imgs\products\QuanShort\s7.png" />
+    <Content Include="imgs\products\QuanShort\s8.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s1.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s2.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s3.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s4.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s5.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s6.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s7.png" />
+    <Content Include="imgs\products\SoMiDaiTay\s8.png" />
+    <Content Include="imgs\products\Vest\v3.png" />
+    <Content Include="imgs\products\Vest\v4.png" />
+    <Content Include="imgs\products\Vest\v5.png" />
+    <Content Include="imgs\products\Vest\v6.png" />
+    <Content Include="imgs\products\Vest\v7.png" />
+    <Content Include="imgs\products\Vest\v9.png" />
+    <Content Include="imgs\products\Vest\v1.png" />
+    <Content Include="imgs\products\Vest\v2.png" />
     <Content Include="imgs\sample-logo.png" />
+    <Content Include="imgs\silde\silde2.png" />
+    <Content Include="imgs\silde\slide.png" />
     <Content Include="imgs\somi.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Feedback\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSP\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSP\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSP\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSP\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLDonHang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QLDonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhanVien\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhanVien\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhanVien\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhanVien\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhanVien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLSanPham\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLSanPham\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QLSanPham\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QLSanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QLSanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoyoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Models\DataClasses1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Shared\_LoyoutAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\QLNews.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\QLNhanVien.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\QLKhachHang.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\QLDonHang.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\QLSanPham.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\AddSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongKe\Index.cshtml" />
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
@@ -195,13 +298,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\Product.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\ViewSanPham\Index.cshtml" />
+    <Content Include="Views\ViewSanPham\Detail.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\HTCuaHang.cshtml" />
+    <Content Include="Views\ViewNews\Index.cshtml" />
+    <Content Include="Views\ViewNews\Detail.cshtml" />
+    <Content Include="Views\ViewSanPham\DsSP.cshtml" />
+    <Content Include="Views\SearchInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Admin\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

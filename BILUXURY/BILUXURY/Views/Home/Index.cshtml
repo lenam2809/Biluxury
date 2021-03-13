@@ -2,12 +2,16 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var listlsp = ViewBag.list;
+    var listsp = ViewBag.listsp;
+    var listsp2 = ViewBag.listsp2;
+    var news = ViewBag.news;
 }
 
-<div class="position-relative overflow-hidden p-3 text-center bg-main">
+<div class="position-relative overflow-hidden p-5 text-center bg-main">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 font-weight-normal">BILUXURY</h1>
-        <p class="lead font-weight-normal">Biluxury cam kết mang lại giá trị đích thực và một cuộc sống thịnh vượng hơn cho phái mạnh Việt</p>
+        <h1 class="display-4 font-weight-normal" style="color: cornsilk;">BILUXURY</h1>
+        <p class="lead font-weight-normal" style="color: cornsilk;">Biluxury cam kết mang lại giá trị đích thực và một cuộc sống thịnh vượng hơn cho phái mạnh Việt</p>
         <a class="btn btn-outline-secondary" href="/Home/About?">Xem thêm</a>
     </div>
     <div class="product-device box-shadow d-none d-md-block"></div>
@@ -15,41 +19,17 @@
 </div>
 
 <div class="card-group" style="margin-top: 50px;">
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <h5 class="card-title">VEST CÔNG SỞ</h5>
-            <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
+    @foreach (var item in listlsp)
+    {
+        <div class="card cards">
+            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <div class="card-body text-lg-center">
+                <h5 class="card-title">@item.TenLoaiSP</h5>
+                <a href="#" onclick="location.href='@Url.Action("Index", "ViewSanPham")'" class="btn btn-outline-secondary">Xem thêm</a>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <h5 class="card-title">Card title</h5>
-            <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-        </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <h5 class="card-title">Card title</h5>
-            <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-        </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <h5 class="card-title">Card title</h5>
-            <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-        </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <h5 class="card-title">Card title</h5>
-            <a href="#" class="btn btn-outline-secondary">Xem thêm</a>
-        </div>
-    </div>
+    }
+
 </div>
 
 <div class="container-fluid">
@@ -71,137 +51,47 @@
 </div>
 
 <div class="card-group" style="margin-top: 50px;">
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price">
-                    <span class="current-price">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price">
-                    <span class="current-price">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+    @foreach (var item in listsp)
+    {
+        <div class="card cards">
+            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <div class="card-body text-lg-center">
+                <div class="product-info">
+                    <div class="product-title" style="font-size: small;">
+                        <a class="a-product" href="#">@item.TenSP</a>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">@item.Gia</span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="button" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class=" product-price ">
-                    <span class="current-price ">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card ">
-        <img src="~/imgs/somi.png " class="card-img-top " alt="... ">
-        <div class="card-body text-lg-center ">
-            <div class="product-info ">
-                <div class="product-title ">
-                    <a class="a-product " href="# ">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price ">
-                    <span class="current-price ">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 
 <div class="card-group" style="margin-top: 50px;">
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price">
-                    <span class="current-price">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price">
-                    <span class="current-price">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+    @foreach (var item in listsp2)
+    {
+        <div class="card cards">
+            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <div class="card-body text-lg-center">
+                <div class="product-info">
+                    <div class="product-title" style="font-size: small;">
+                        <a class="a-product" href="#">@item.TenSP</a>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">@item.Gia</span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="button" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="~/imgs/somi.png" class="card-img-top" alt="...">
-        <div class="card-body text-lg-center">
-            <div class="product-info">
-                <div class="product-title">
-                    <a class="a-product" href="#">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class=" product-price ">
-                    <span class="current-price ">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card ">
-        <img src="~/imgs/somi.png " class="card-img-top " alt="... ">
-        <div class="card-body text-lg-center ">
-            <div class="product-info ">
-                <div class="product-title ">
-                    <a class="a-product " href="# ">Áo sơ mi nam dài tay SMDH155TRT</a>
-                </div>
-                <div class="product-price ">
-                    <span class="current-price ">525,000₫</span>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 
 <div class="div-new-1">
@@ -228,54 +118,25 @@
         <h2 style="text-align: center;">TIN TỨC THỜI TRANG</h2>
         <p class="section-desc" style="text-align: center;">Cập nhập những tin tức mới nhất về cách phối đồ, xu hướng thời trang, bản tin khuyến mại, khai trương,...</p>
         <div class="row">
-            <div class="col" style=" color: black; padding: 0px 15px;">
-                <div class="card">
-                    <img src="~/imgs/img4.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="product-info">
-                            <div class="product-title">
-                                <a class="a-product a-new-title" href="#">TOP 5 Mẫu vest cưới Hot nhất 2020 - Xu hướng mới cho thời trang mùa cưới</a>
-                            </div>
-                            <br>
-                            <div class="new-price">
-                                <span class="current">Trong ngày trọng đại nhất của cuộc đời, cùng một nửa của mình lưu lại những khoảnh khắc ngọt ngào, hạnh phúc nhất, bạn không thể "tùy ý" cho trang phục của bản thân mình. Hãy lựa chọn cho mình bộ vest cưới đẹp nhất, t...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="~/imgs/img4.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="product-info">
-                            <div class="product-title">
-                                <a class="a-product a-new-title" href="#">TIẾT LỘ NGƯỜI BỐ CỦA CHUỖI 130 CỬA HÀNG THỜI TRANG BILUXURY</a>
-                            </div>
-                            <br>
-                            <div class="new-price">
-                                <span class="current">Không trực tiếp phát triển Biluxury, nhưng ông Lê Xuân Tám lại là người khơi nguồn và đồng hành cùng các con trong việc sáng lập, xây dựng Biluxury.Nếu chỉ nhìn những bộ trang phục hiện tại của Biluxury, không ai nghĩ...</span>
+            @foreach (var item in news)
+            {
+                <div class="col" style=" color: black; padding: 0px 15px;">
+                    <div class="card">
+                        <img src="@item.NewImage" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="product-info">
+                                <div class="product-title">
+                                    <a class="a-product a-new-title" href="#">@item.Title</a>
+                                </div>
+                                <br>
+                                <div class="new-price">
+                                    <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.NewID })'">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="~/imgs/img4.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="product-info">
-                            <div class="product-title">
-                                <a class="a-product a-new-title" href="#">HÉ LỘ BST SAUVAGE TRÌNH DIỄN TRONG VIFW 19</a>
-                            </div>
-                            <br>
-                            <div class="new-price">
-                                <span class="current">Tuần lễ thời trang quốc tế Việt Nam (Vietnam International Fashion Week – VIFW) là sự kiện thời trang lớn nhất và chuyên nghiệp nhất tại Việt Nam với sự tham gia trình diễn và giới thiệu các bộ sưu tập mới nhất, độc đ...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

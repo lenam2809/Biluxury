@@ -1,0 +1,49 @@
+﻿@model BILUXURY.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+}
+
+<h2>Chi tiết sản phẩm</h2>
+
+<table class="table table-striped table-hover" style="border: 1px solid black; margin-top: 15px;">
+    <thead>
+        <tr>
+            <th scope="col">Mã sản phẩm</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Mã nhà cung cấp</th>
+            <th scope="col">Mã loại sản phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Chất liệu</th>
+            <th scope="col">Kiểu dáng</th>
+            <th scope="col">Xuất xứ</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Số lượng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@Html.DisplayFor(model => model.MaSP)</th>
+            <td>@Html.DisplayFor(model => model.TenSP)</td>
+            <td>@Html.DisplayFor(model => model.MaNCC)</td>
+            <td>@Html.DisplayFor(model => model.MaLoaiSP)</td>
+            <td>@Html.DisplayFor(model => model.Gia)</td>
+            <td>@Html.DisplayFor(model => model.ChatLieu)</td>
+            <td>@Html.DisplayFor(model => model.KieuDang)</td>
+            <td>@Html.DisplayFor(model => model.XuatXu)</td>
+            <td>@Html.DisplayFor(model => model.ImageLink)</td>
+            <td>@Html.DisplayFor(model => model.SoLuong)</td>
+            <td>
+                 <button type="button" title="edit" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "QLSanPham", new { id = Model.MaSP })'"><i class="fas fa-Edit"></i> Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div>
+    <button type="button" title="back" class="btn btn-warning" style="margin-top: 15px;" onclick="location.href='@Url.Action("Index", "QLSanPham")'"><i class="fas fa-backward"></i> Trở về</button>
+</div>
+

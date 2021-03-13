@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<BILUXURY.Models.SANPHAM>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .page-item > a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        text-decoration: none;
+    }
+
+    .center {
+        justify-content: center;
+    }
+</style>
+
+<div class="row justify-content-center" style="padding-top: 50px;">
+    @foreach (var item in Model)
+    {
+        <div class="card col-3 text-center" style="padding: 50px 25px 5px 25px; border: none;">
+            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <div class="card-body text-lg-center">
+                <div class="product-info">
+                    <div class="product-title" style="font-size: small;">
+                        <a class="a-product" href="#">@Html.DisplayFor(modelItem => item.TenSP)</a>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">@Html.DisplayFor(modelItem => item.Gia)&#8363;</span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button id="btn-test" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<br />
+<hr />
+
+
+@Html.PagedListPager(Model,
+    page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 10,
+        ContainerDivClasses = new string[] { "pagination", "center" },
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" },
+    })
+
+
+@*@section scripts {
+    <script>
+
+        $(document).ready(function () {           
+            $('.card').mouseover(function () {
+                $('.card').children("#btn-test").show();
+            });
+        });
+
+    </script>
+}*@

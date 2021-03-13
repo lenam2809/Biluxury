@@ -17,7 +17,7 @@ namespace BILUXURY.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller = "HomeAdmin", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

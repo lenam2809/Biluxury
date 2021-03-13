@@ -12,6 +12,19 @@ namespace BILUXURY.Controllers
         DataClasses1DataContext data = new DataClasses1DataContext();
         public ActionResult Index()
         {
+            var lsp = (from p in data.LOAISANPHAMs
+                      select p).ToList().Take(5);
+            ViewBag.list = lsp;
+
+            var sp = data.SANPHAMs.OrderByDescending(x => x.Gia).ToList().Take(4);
+            ViewBag.listsp = sp;
+
+            var sp2 = data.SANPHAMs.OrderBy(x => x.Gia).ToList().Take(4);
+            ViewBag.listsp2 = sp2;
+
+            var news = data.NEWs.OrderByDescending(x => x.ViewCount).ToList().Take(3);
+            ViewBag.news = news;
+
             return View();
         }
 
@@ -39,11 +52,8 @@ namespace BILUXURY.Controllers
             return View();
         }
 
-        public ActionResult Product()
+        public ActionResult HTCuaHang()
         {
-            var sp = (from p in data.SANPHAMs
-                      select p).ToList();
-            ViewBag.listsp = sp;
             return View();
         }
     }

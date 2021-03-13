@@ -9,20 +9,19 @@
         <div class="col">
             <h1 class="text-center">ĐĂNG NHẬP</h1>
             <br>
-            <form class="text-center" style="margin: 0 auto; width: 400px;">
+            <form name="myForm" class="text-center" action="/Admin/HomeAdmin/Login" onsubmit="return  validateForm()" method="post" style="margin: 0 auto; width: 400px;">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="text" class="form-control" name="user" placeholder="Enter account">
+                    <p id="validate-account" style="color: red;" class="form-text"></p>
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+                    <p id="validate-password" style="color: red;" class="form-text"></p>
                 </div>
                 <br>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark">ĐĂNG NHẬP</button>
-                </div>
-                <div>
-                    <a class="list-group-item list-group-item-action border-white" href="#">Trở về</a>
                 </div>
                 <div>
                     <a class="list-group-item list-group-item-action border-white" href="#">Quên mật khẩu</a>
@@ -31,4 +30,24 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        function validateForm() {
+            var a = document.forms["myForm"];
+
+            //validate account
+            if (a["user"].value == "") {
+                document.getElementById("validate-account").innerHTML = "The account should not be blank.";
+                return false;
+            }
+
+            //validate password
+            if (a["password"].value == "") {
+                document.getElementById("validate-password").innerHTML = "The password should not be blank.";
+                return false;
+            }
+        }
+    </script>
+}
 

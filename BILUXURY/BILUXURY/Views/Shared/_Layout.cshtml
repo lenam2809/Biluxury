@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
     <title>Bi Luxury</title>
     <style>
         a.navbar-brand.nav-hover:hover {
@@ -36,8 +38,12 @@
             background-color: white;
         }
 
-        .bg-main {
+        /*.bg-main {
             background-image: url('https://s3.amazonaws.com/rm3.photos.prod.readmedia.com/students/4119765/cover-original/watercolor-background-1.jpg?1548185966');
+        }*/
+
+        .bg-main {
+            background-image: url('/imgs/silde/silde2.png');
         }
 
         .foot-inf > p {
@@ -63,7 +69,7 @@
                 color: red !important;
             }
 
-        .card {
+        .cards {
             padding: 25px;
             border: none;
         }
@@ -93,6 +99,16 @@
         .a-new-title {
             font-weight: 500;
         }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            list-style-type: none;
+        }
     </style>
 </head>
 
@@ -102,16 +118,16 @@
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
                     <li><i class="fas fa-phone"></i><a class="navbar-brand nav-hover" href="#"> 0944328989  </a></li>
-                    <li><i class="fas fa-home"></i><a class="navbar-brand nav-hover" href="#"> Hệ thống <span style="font-weight: bold;">140</span> cửa hàng</a></li>
+                    <li><i class="fas fa-home"></i><a class="navbar-brand nav-hover" href="/Home/HTCuaHang?"> Hệ thống <span style="font-weight: bold;">140</span> cửa hàng</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <i class="fas fa-sign-in-alt"></i>
-                        <a class="navbar-brand nav-hover" href="#"> Đăng nhập</a>
+                        <a class="navbar-brand nav-hover" href="/Home/Login?"> Đăng nhập</a>
                     </li>
                     <li>
                         <i class="fas fa-user"></i>
-                        <a class="navbar-brand nav-hover" href="#"> Đăng kí</a>
+                        <a class="navbar-brand nav-hover" href="/Home/Register?"> Đăng kí</a>
                     </li>
                 </ul>
             </div>
@@ -120,7 +136,7 @@
     <div class="nav-main">
         <nav class="site-header sticky-top py-1 nav-background">
             <div class="container-fluid d-flex flex-column flex-md-row justify-content-between">
-                <a class="py-2" href="#">
+                <a class="py-2" href="/">
                     <img class="img-fluid" src="~/imgs/logo.png" alt="logo-icon" width="120">
                 </a>
                 <div class="nav-padding a-font">
@@ -129,30 +145,45 @@
                             <a class="nav-link active" href="#">KHUYẾN MÃI</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ÁO NAM</a>
+                            <a class="nav-link open dropdown" href="#">ÁO NAM</a>
+                            <ul class="sub-menu">
+                                <li><a class="nav-link" href="#">Áo sơ mi dài tay</a></li>
+                                <li><a class="nav-link" href="#">Áo sơ mi ngắn tay</a></li>
+                                <li><a class="nav-link" href="#">Áo phông cộc tay</a></li>
+                                <li><a class="nav-link" href="#">Áo thu đông</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">BỘ VEST - SUIT</a>
+                            <a class="nav-link" href="/ViewSanPham/DsSP?id=6">BỘ VEST - SUIT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">QUẦN NAM</a>
+                            <a class="nav-link open dropdown" href="#">QUẦN NAM</a>
+                            <ul class="sub-menu">
+                                <li><a class="nav-link" href="#">Quần âu nam</a></li>
+                                <li><a class="nav-link" href="#">Quần jean nam</a></li>
+                                <li><a class="nav-link" href="#">Quần ngố nam</a></li>
+                                <li><a class="nav-link" href="#">Quần short nam</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PHỤ KIỆN NAM</a>
+                            <a class="nav-link open dropdown" href="#">PHỤ KIỆN NAM</a>
+                            <ul class="sub-menu">
+                                <li><a class="nav-link" href="#">Giày da nam</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">NỔI BẬT</a>
                         </li>
                         <li class="nav-item">
-                            <form class="d-flex">
-                                <input id="nav-search" class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                            <form action="/SearchInfo" method="get" class="d-flex">
+                                <input id="nav-search" class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." name="searchString" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
                             </form>
                         </li>
                     </ul>
                 </div>
                 <div class="btn text-center nav-cart">
-                    <a href="#" style="text-decoration: none; color: black;">
+                    <a onclick="location.href='@Url.Action("Index", "Cart")'" style="text-decoration: none; color: black;">
                         <div class="hd-link-icon">
                             <i class="fas fa-cart-plus fa-2x"></i>
                         </div>
@@ -193,10 +224,14 @@
                         <p>
                             SĐT: 0944328989 - Email: cskh@biluxury.vn
                         </p>
+
                         <p>
-                            <p>Mã số thuế / Mã số doanh nghiệp: 0107273793</p>
-                            <p>Đăng ký lần đầu : 30/12/2015, Sở KHĐTHN - Đăng ký thay đổi lần thứ 4, ngày 05/07/2019, Sở KHĐTHN</p>
+                            Mã số thuế / Mã số doanh nghiệp: 0107273793
                         </p>
+                        <p>
+                            Đăng ký lần đầu : 30/12/2015, Sở KHĐTHN - Đăng ký thay đổi lần thứ 4, ngày 05/07/2019, Sở KHĐTHN
+                        </p>
+                        <p></p>
                     </div>
                 </div>
                 <div class="col-6 col-md a-font">
@@ -230,9 +265,9 @@
                 <div class="col-6 col-md">
                     <h5>KẾT NỐI VỚI CHÚNG TÔI</h5>
                     <ul class="list-unstyled text-small" style="display: flex;">
-                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: blue;" class="fab fa-facebook"></i></a></li>
-                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: red;" class="fab fa-youtube"></i></a></li>
-                        <li style="padding: 0 10px;"><a class="text-muted" href="#"><i style="color: blueviolet;" class="fab fa-instagram"></i></a></li>
+                        <li style="padding: 0 10px;"><a class="text-muted" href="https://www.facebook.com/lenam.2809/"><i style="color: blue;" class="fab fa-facebook"></i></a></li>
+                        <li style="padding: 0 10px;"><a class="text-muted" href="https://www.youtube.com/channel/UCo7XIes1KyIHdGOX7DYwdtQ"><i style="color: red;" class="fab fa-youtube"></i></a></li>
+                        <li style="padding: 0 10px;"><a class="text-muted" href="https://www.instagram.com/nam_l.v.n/"><i style="color: blueviolet;" class="fab fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -246,7 +281,7 @@
         <script>
             window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
         </script>
-        <script src="../../assets/js/vendor/popper.min.js"></script>
+        @*<script src="../../assets/js/vendor/popper.min.js"></script>
         <script src="../../dist/js/bootstrap.min.js"></script>
         <script src="../../assets/js/vendor/holder.min.js"></script>
         <script>
@@ -255,8 +290,20 @@
                 fg: '#eceeef',
                 text: 'Thumbnail'
             });
-        </script>
+        </script>*@
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('.open').click(function (event) {
+                event.preventDefault();
+                $(this).next('.sub-menu').toggle('slow');
+            });
+        });
+    </script>
 
 </body>
 

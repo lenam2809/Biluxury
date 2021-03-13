@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BILUXURY.Models.DONHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+}
+<h2>Quản lý đơn hàng</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-striped table-hover" style="border: 1px solid black; margin-top: 15px;">
+    <tr>
+        <th>
+            Mã khách hàng
+        </th>
+        <th>
+            Mã nhân viên
+        </th>
+        <th>
+            Ngày đặt hàng
+        </th>
+        <th>
+            Mã shipper
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaNV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaShipper)
+        </td>
+        <td>
+            <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLDonHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>
+        </td>
+    </tr>
+}
+
+</table>

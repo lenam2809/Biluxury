@@ -18,54 +18,18 @@ namespace BILUXURY.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Login()
+
+
+
+        [HttpPost]
+        public ActionResult Login(string user, string password)
         {
+            if (user=="admin" && password=="123456") // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            {
+                return RedirectToAction("Index"); //lọc theo chuỗi tìm kiếm
+            }
             return View();
         }
 
-        public ActionResult QLSanPham()
-        {
-            var sp = (from p in data.SANPHAMs
-                      select p).ToList();
-            ViewBag.listsp = sp;
-            return View();
-        }
-
-        public ActionResult AddSanPham()
-        {
-            return View();
-        }
-
-        public ActionResult QLNews()
-        {
-            return View();
-        }
-
-        public ActionResult QLNhanVien()
-        {
-            return View();
-        }
-
-        public ActionResult QLKhachHang()
-        {
-            return View();
-        }
-
-        public ActionResult QLDonHang()
-        {
-            return View();
-        }
-
-        //public ActionResult deleteProduct(int id = -1)
-        //{
-
-        //    var sp = data.SANPHAMs.Where(p => p.MaSP == id).FirstOrDefault();
-        //    if (sp != null)
-        //    {
-        //        data.SANPHAMs.DeleteOnSubmit(sp);
-        //        data.SANPHAMs.Sa;
-        //    }
-        //    return RedirectToAction("QLSanPham", "Admin");
-        //}
     }
 }
