@@ -1,9 +1,6 @@
 ﻿using BILUXURY.Models;
 using PagedList;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BILUXURY.Controllers
@@ -17,7 +14,7 @@ namespace BILUXURY.Controllers
         {
             if (page == null) page = 1;
             var sp = from p in data.SANPHAMs
-                      select p;
+                     select p;
             int pageSize = 16;
             int pageNumber = (page ?? 1);
             return View(sp.ToPagedList(pageNumber, pageSize));
@@ -31,7 +28,8 @@ namespace BILUXURY.Controllers
             ViewBag.lSp = lsp.MieuTa;
             ViewBag.namelsp = lsp.TenLoaiSP;
 
-            var sp = from s in data.SANPHAMs where s.MaLoaiSP == id
+            var sp = from s in data.SANPHAMs
+                     where s.MaLoaiSP == id
                      select s;
             ViewBag.sp = sp;
             //upload image
@@ -41,6 +39,7 @@ namespace BILUXURY.Controllers
         public ActionResult Detail(int id)
         {
             var sp = data.SANPHAMs.Single(s => s.MaSP == id);
+            ViewBag.image = sp.LinkAnh;
             ViewBag.masp = sp.MaSP;
             ViewBag.tensp = sp.TenSP;
             ViewBag.gia = sp.Gia;
@@ -48,9 +47,7 @@ namespace BILUXURY.Controllers
             ViewBag.cl = sp.ChatLieu;
 
 
-            var dsnew = (from p in data.NEWs
-                         where p.MaSP == id
-                         select p).ToList();
+            var dsnew = data.NEWs.Where(x => x.MaLSP == sp.MaLoaiSP).ToList();
             ViewBag.news = dsnew;
 
             var dssp = data.SANPHAMs.Where(x => x.MaLoaiSP == sp.MaLoaiSP).ToList();

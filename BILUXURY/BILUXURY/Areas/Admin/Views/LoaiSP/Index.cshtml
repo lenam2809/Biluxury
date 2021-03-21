@@ -20,28 +20,40 @@
         <th>
             Miêu tả
         </th>
+        <th>
+            Xuất xứ
+        </th>
+        <th>
+            Ảnh
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaLoaiSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenLoaiSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MieuTa)
-            </td>
-            <td>
-                <div style="display: flex;">
-                    <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "LoaiSP", new { id = item.MaLoaiSP })'"><i class="fas fa-edit"></i></button>&nbsp;
-                    <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "LoaiSP", new { id = item.MaLoaiSP     })'"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaLoaiSP)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenLoaiSP)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MieuTa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.XuatXu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Image)
+    </td>
+    <td>
+        <div style="display: flex;">
+            <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "LoaiSP", new { id = item.MaLoaiSP })'"><i class="fas fa-edit"></i></button>&nbsp;
+            <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "LoaiSP", new { id = item.MaLoaiSP     })'"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </td>
+</tr>
     }
 
 </table>

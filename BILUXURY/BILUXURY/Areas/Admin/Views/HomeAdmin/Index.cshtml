@@ -2,7 +2,132 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+    var lsp = ViewBag.lsp;
 }
 
-<h2>Đây là trang chủ</h2>
+
+@Styles.Render("~/Asset/CSS/MainAdmin.css")
+@Styles.Render("~/Asset/CSS/thongke.css")
+
+
+
+<div class="preloader">
+
+</div>
+
+<div class="row" style="height: auto; margin-bottom: 20px;">
+    <div class="wrapper">
+        <div class="card front-face">
+            <p class="title-p">Sản phẩm bán chạy nhất</p>
+            <img src="@ViewBag.link">
+        </div>
+        <div class="card back-face">
+            <img src="@ViewBag.link">
+            <div class="info">
+                <div class="title">
+                    Mã sản phẩm @ViewBag.masp
+                </div>
+                <p>
+                    Tên sản phẩm: @ViewBag.tensp <br />
+                    Số lượng đã bán @ViewBag.sl
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="card front-face">
+            <p class="title-p">Số lượng người đã truy cập</p>
+            <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
+        </div>
+        <div class="card back-face">
+            <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
+            <div class="info">
+                <div class="title">
+                    Số lượng người đã truy cập
+                </div>
+                <p>
+                    @ApplicationInstance.Application["Totaluser"]
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="card front-face">
+            <p class="title-p">Loại sản phẩm được yêu thích nhất</p>
+            <img src="@ViewBag.linklsp">
+        </div>
+        <div class="card back-face">
+            <img src="@ViewBag.linklsp">
+            <div class="info">
+                <div class="title">
+                    Mã loại sản phẩm @ViewBag.lmasp
+                </div>
+                <p>
+                    Tên: @ViewBag.tenlsp <br>
+                    Tổng số lượng đã bán: @ViewBag.sllsp
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="card front-face">
+            <p class="title-p">Khách hàng vip</p>
+            <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
+        </div>
+        <div class="card back-face">
+            <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80">
+            <div class="info">
+                <div class="title">
+                    Tên khách hàng: @ViewBag.tenkh
+                </div>
+                <p>
+                    Mã khách hàng: @ViewBag.makh <br />
+                    Tông giá trị: @ViewBag.giatri
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="piechart" style="width: 50%; height: auto; padding: 25px 0;"></div>
+<button type="button" title="Thêm sản phẩm" class="btn btn-info" style="margin-top: 15px;" value="Thêm sản phẩm" onclick="location.href='@Url.Action("Create", "QLSanPham")'"><i class="fas fa-plus-circle"></i> Thêm sản phẩm</button>
+<button type="button" title="Thêm tin" class="btn btn-info" style="margin-top: 15px;" value="Thêm tin" onclick="location.href='@Url.Action("Create", "News")'"><i class="fas fa-plus-circle"></i> Thêm bài viết</button>
+
+
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['test', 'Hours per Day'],
+            ['Work', 11],
+            ['Eat', 2],
+            ['Commute', 2],
+            ['Watch TV', 2],
+            ['Sleep', 7]
+        ]);
+
+        var options = {
+            title: 'Thống kê trong ngày'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+<script>
+    $(window).on('load', function () {
+        $('.preloader').addClass('complete')
+    })
+</script>
 

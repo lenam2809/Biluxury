@@ -13,8 +13,9 @@
             <th scope="col">Tên khách hàng</th>
             <th scope="col">Ngày sinh</th>
             <th scope="col">Địa chỉ</th>
+            <th scope="col">Giới tính</th>
             <th scope="col">Email</th>
-            <th scope="col">Password</th>
+            <th scope="col">Phone</th>
 
             <th></th>
         </tr>
@@ -24,8 +25,9 @@
             <th scope="row">@Html.DisplayFor(model => model.TenKH)</th>
             <td>@Html.DisplayFor(model => model.NgaySinh)</td>
             <td>@Html.DisplayFor(model => model.DiaChi)</td>
+            <td>@Html.DisplayFor(model => model.GioiTinh)</td>
             <td>@Html.DisplayFor(model => model.Email)</td>
-            <td>@Html.DisplayFor(model => model.Password)</td>
+            <td>@Html.DisplayFor(model => model.Phone)</td>
             <td>
                 <button type="button" title="edit" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "QLKhachHang", new { id = Model.MaKH })'"><i class="fas fa-Edit"></i> Edit</button>
             </td>

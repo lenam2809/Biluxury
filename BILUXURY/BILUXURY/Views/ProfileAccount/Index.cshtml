@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var donhang = ViewBag.donhang;
+}
+
+<h2>Tài khoản của bạn</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Phone
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @ViewBag.TenKH
+        </td>
+        <td>
+            @ViewBag.NgaySinh
+        </td>
+        <td>
+            @ViewBag.DiaChi
+        </td>
+        <td>
+            @ViewBag.GioiTinh
+        </td>
+        <td>
+            @ViewBag.Email
+        </td>
+        <td>
+            @ViewBag.Phone
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = ViewBag.MaKH })
+        </td>
+    </tr>
+</table>
+
+<h2>Lịch sử giao dịch</h2>
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Số lượng đã mua
+        </th>
+        <th>
+            Giá
+        </th>
+    </tr>
+    @foreach (var item in donhang)
+    {
+        <tr>
+            <td>
+                @item.TenSP
+            </td>
+            <td>
+                @item.SoLuong
+            </td>
+            <td>
+                @{
+                    decimal gia = @item.Gia;
+                    var result = gia.ToString("#,###");
+                }
+                @result &#8363;
+            </td>
+        </tr>
+    }
+</table>

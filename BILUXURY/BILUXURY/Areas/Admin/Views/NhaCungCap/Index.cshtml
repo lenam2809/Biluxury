@@ -24,31 +24,37 @@
         <th scope="col">
             Phone
         </th>
+        <th scope="col">
+            Mô tả
+        </th>
         <th scope="col"></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <th scope="row">
-                @Html.DisplayFor(modelItem => item.MaNCC)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenNCC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                <div style="display: flex;">
-                    <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "NhaCungCap", new { id = item.MaNCC })'"><i class="fas fa-edit"></i></button>&nbsp;
-                    <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "NhaCungCap", new { id = item.MaNCC })'"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-        </tr>
+<tr>
+    <th scope="row">
+        @Html.DisplayFor(modelItem => item.MaNCC)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenNCC)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MoTa)
+    </td>
+    <td>
+        <div style="display: flex;">
+            <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "NhaCungCap", new { id = item.MaNCC })'"><i class="fas fa-edit"></i></button>&nbsp;
+            <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "NhaCungCap", new { id = item.MaNCC })'"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </td>
+</tr>
     }
 
 </table>

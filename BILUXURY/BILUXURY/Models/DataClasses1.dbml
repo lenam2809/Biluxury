@@ -1,23 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BILUXURY2" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-4H2CDN2\LENAM1999;Initial Catalog=BILUXURY2;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BILUXURY2ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BILUXURY" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-4H2CDN2\LENAM1999;Initial Catalog=BILUXURY;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BILUXURYConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CHITIETDONHANG" Member="CHITIETDONHANGs">
+    <Type Name="CHITIETDONHANG">
+      <Column Name="MaDH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DONHANG_CHITIETDONHANG" Member="DONHANG" ThisKey="MaDH" OtherKey="MaDH" Type="DONHANG" IsForeignKey="true" />
+      <Association Name="SANPHAM_CHITIETDONHANG" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.DONHANG" Member="DONHANGs">
     <Type Name="DONHANG">
       <Column Name="MaDH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MaNV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NgayDH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NgayDH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MaShipper" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="DONHANG_CHITIETDONHANG" Member="CHITIETDONHANGs" ThisKey="MaDH" OtherKey="MaDH" Type="CHITIETDONHANG" />
       <Association Name="KHACHHANG_DONHANG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
-      <Association Name="NHANVIEN_DONHANG" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
       <Association Name="SHIPPER_DONHANG" Member="SHIPPER" ThisKey="MaShipper" OtherKey="MaShipper" Type="SHIPPER" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.FEEDBACK" Member="FEEDBACKs">
     <Type Name="FEEDBACK">
-      <Column Name="FeedbackID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="KHACHHANG_FEEDBACK" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
@@ -28,52 +37,52 @@
       <Column Name="TenKH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="NgaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
       <Association Name="KHACHHANG_DONHANG" Member="DONHANGs" ThisKey="MaKH" OtherKey="MaKH" Type="DONHANG" />
       <Association Name="KHACHHANG_FEEDBACK" Member="FEEDBACKs" ThisKey="MaKH" OtherKey="MaKH" Type="FEEDBACK" />
+      <Association Name="TAIKHOAN_KHACHHANG" Member="TAIKHOAN" ThisKey="Email" OtherKey="Email" Type="TAIKHOAN" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LOAISANPHAM" Member="LOAISANPHAMs">
     <Type Name="LOAISANPHAM">
       <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenLoaiSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="MieuTa" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MieuTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="LOAISANPHAM_SANPHAM" Member="SANPHAMs" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="SANPHAM" />
     </Type>
   </Table>
   <Table Name="dbo.NEWS" Member="NEWs">
     <Type Name="NEW">
-      <Column Name="NewID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="NewImage" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ViewCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MaSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LinkAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaLSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.NHACUNGCAP" Member="NHACUNGCAPs">
     <Type Name="NHACUNGCAP">
-      <Column Name="MaNCC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaNCC" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenNCC" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="SANPHAMs" ThisKey="MaNCC" OtherKey="MaNCC" Type="SANPHAM" />
     </Type>
   </Table>
-  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
-    <Type Name="NHANVIEN">
-      <Column Name="MaNV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenNV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="GioiTinh" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Account" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="IsActive" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="NHANVIEN_DONHANG" Member="DONHANGs" ThisKey="MaNV" OtherKey="MaNV" Type="DONHANG" />
+  <Table Name="dbo.NhapHang" Member="NhapHangs">
+    <Type Name="NhapHang">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.SANPHAM" Member="SANPHAMs">
@@ -82,11 +91,11 @@
       <Column Name="TenSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="MaNCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="ChatLieu" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="KieuDang" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="XuatXu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ImageLink" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ChatLieu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KieuDang" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LinkAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="KhuyenMai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsDelete" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SANPHAM_CHITIETDONHANG" Member="CHITIETDONHANGs" ThisKey="MaSP" OtherKey="MaSP" Type="CHITIETDONHANG" />
@@ -98,19 +107,21 @@
     <Type Name="SHIPPER">
       <Column Name="MaShipper" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenShipper" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
       <Association Name="SHIPPER_DONHANG" Member="DONHANGs" ThisKey="MaShipper" OtherKey="MaShipper" Type="DONHANG" />
     </Type>
   </Table>
-  <Table Name="dbo.CHITIETDONHANG" Member="CHITIETDONHANGs">
-    <Type Name="CHITIETDONHANG">
-      <Column Name="MaChiTietDH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MaDH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="DONHANG_CHITIETDONHANG" Member="DONHANG" ThisKey="MaDH" OtherKey="MaDH" Type="DONHANG" IsForeignKey="true" />
-      <Association Name="SANPHAM_CHITIETDONHANG" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
+  <Table Name="dbo.TAIKHOAN" Member="TAIKHOANs">
+    <Type Name="TAIKHOAN">
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="TAIKHOAN_KHACHHANG" Member="KHACHHANGs" ThisKey="Email" OtherKey="Email" Type="KHACHHANG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Total" Member="Totals">
+    <Type Name="Total">
+      <Column Name="SoLuongnguoi" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -1,8 +1,6 @@
 ﻿using BILUXURY.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BILUXURY.Controllers
@@ -14,16 +12,16 @@ namespace BILUXURY.Controllers
         // GET: SearchInfo
         [HttpGet]
         public ActionResult Index(string searchString)
-        { 
-                var sp = from s in data.SANPHAMs // lấy toàn bộ liên kết
-                            select s;
+        {
+            var sp = from s in data.SANPHAMs // lấy toàn bộ liên kết
+                     select s;
 
-                if (!String.IsNullOrEmpty(searchString)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
-                {
-                    sp = sp.Where(s => s.TenSP.Contains(searchString)); //lọc theo chuỗi tìm kiếm
-                }
+            if (!String.IsNullOrEmpty(searchString)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            {
+                sp = sp.Where(s => s.TenSP.Contains(searchString)); //lọc theo chuỗi tìm kiếm
+            }
 
-                return View(sp); //trả về kết quả
+            return View(sp); //trả về kết quả
 
 
         }

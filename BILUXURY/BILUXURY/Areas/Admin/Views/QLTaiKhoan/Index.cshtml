@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BILUXURY.Models.TAIKHOAN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
+}
+
+
+<h2>Danh sách tài khoản </h2>
+
+
+<table class="table table-striped table-hover" style="border: 1px solid black; margin-top: 15px;">
+    <tr>
+        <th scope="col">
+            Email
+        </th>
+        <th scope="col">
+            Password
+        </th>
+        <th scope="col">
+            Role
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td scope="row">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

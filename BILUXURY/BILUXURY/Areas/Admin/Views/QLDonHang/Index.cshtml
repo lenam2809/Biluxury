@@ -15,35 +15,35 @@
             Mã khách hàng
         </th>
         <th>
-            Mã nhân viên
-        </th>
-        <th>
             Ngày đặt hàng
         </th>
         <th>
             Mã shipper
         </th>
+        <th>
+            Xác nhận
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaKH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaNV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaShipper)
-        </td>
-        <td>
-            <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLDonHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayDH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaShipper)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsActive)
+    </td>
+    <td>
+        <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLDonHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>
+    </td>
+</tr>
 }
 
 </table>

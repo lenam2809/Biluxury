@@ -20,14 +20,18 @@
     @foreach (var item in sp)
     {
         <div class="card col-3 text-center" style="padding: 50px 25px 5px 25px; border: none;">
-            <img src="@item.ImageLink" class="card-img-top" alt="...">
+            <img src="@item.LinkAnh" class="card-img-top" alt="...">
             <div class="card-body text-lg-center">
                 <div class="product-info">
                     <div class="product-title" style="font-size: small;">
                         <a class="a-product" href="#">@item.TenSP</a>
                     </div>
                     <div class="product-price">
-                        <span class="current-price">@item.Gia&#8363;</span>
+                        @{
+                            decimal gia = @item.Gia;
+                            var result = gia.ToString("#,###");
+                        }
+                        <span class="current-price">@result &#8363;</span>
                     </div>
                     <div class="d-grid gap-2">
                         <button id="btn-test" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" type="button" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>

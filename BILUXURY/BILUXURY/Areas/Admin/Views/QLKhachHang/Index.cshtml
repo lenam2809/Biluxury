@@ -21,40 +21,46 @@
             Địa chỉ
         </th>
         <th>
+            Giới tính
+        </th>
+        <th>
             Email
         </th>
         <th>
-            Password
+            Phone
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenKH)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                <div style="display: flex;">
-                    <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLKhachHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>&nbsp;
-                    <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "QLKhachHang", new { id = item.MaKH })'"><i class="fas fa-edit"></i></button>&nbsp;
-                    <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "QLKhachHang", new { id = item.MaKH })'"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgaySinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GioiTinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        <div style="display: flex;">
+            <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLKhachHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>&nbsp;
+            <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "QLKhachHang", new { id = item.MaKH })'"><i class="fas fa-edit"></i></button>&nbsp;
+            <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "QLKhachHang", new { id = item.MaKH })'"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </td>
+</tr>
     }
 
 </table>

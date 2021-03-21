@@ -1,0 +1,47 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="nav-top">
+        <nav class="navbar navbar-expand-lg fixed navbar-light bg-light" style="padding: 5px 40px;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><i class="fas fa-phone"></i><a class="navbar-brand nav-hover" href="#"> 0944328989  </a></li>
+                    <li><i class="fas fa-home"></i><a class="navbar-brand nav-hover" href="/Home/HTCuaHang?"> Hệ thống <span style="font-weight: bold;">140</span> cửa hàng</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <i class="fas fa-user"></i>
+                        <a class="navbar-brand nav-hover" href="/ProfileAccount/Index?id=1">  Chào, @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-sign-in-alt"></i>
+                        <a class="navbar-brand nav-hover" href="/Home/SignOut?"> Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+}
+else
+{
+    <div class="nav-top">
+        <nav class="navbar navbar-expand-lg fixed navbar-light bg-light" style="padding: 5px 40px;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><i class="fas fa-phone"></i><a class="navbar-brand nav-hover" href="#"> 0944328989  </a></li>
+                    <li><i class="fas fa-home"></i><a class="navbar-brand nav-hover" href="/Home/HTCuaHang?"> Hệ thống <span style="font-weight: bold;">140</span> cửa hàng</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <i class="fas fa-sign-in-alt"></i>
+                        <a class="navbar-brand nav-hover" href="/Home/Login?"> Đăng nhập</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-user"></i>
+                        <a class="navbar-brand nav-hover" href="/Home/Register?"> Đăng kí</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+}

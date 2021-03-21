@@ -1,22 +1,95 @@
 ﻿
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-image: url('/imgs/backGround/wallpaperflare.com_wallpaper.jpg');
+        background-size: cover;
+    }
 
-<div class="container" style="padding-top: 50px;">
+    .box {
+        width: 300px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+        .box h1 {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box input[type="text"],
+        .box input[type="password"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+            .box input[type="text"]:focus,
+            .box input[type="password"]:focus {
+                width: 280px;
+                border-color: #2ecc71;
+            }
+
+        .box input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+            .box input[type="submit"]:hover {
+                background: #c1029f;
+            }
+</style>
+
+
+<form class="box" action="/Admin/HomeAdmin/Login" returnUrl ="@Request.QueryString["ReturnUrl"]" enctype = "multipart/form-data" method="post">
+    <h1>Đăng nhập</h1>
+    <input type="text" name="user" placeholder="Username">
+    <input type="password" name="pass" placeholder="Password">
+    <input type="submit" name="" value="Login">
+</form>
+
+@*<div class="container" style="padding-top: 50px;">
     <div class="row">
         <div class="col">
             <h1 class="text-center">ĐĂNG NHẬP</h1>
             <br>
-            <form name="myForm" class="text-center" action="/Admin/HomeAdmin/Login" onsubmit="return  validateForm()" method="post" style="margin: 0 auto; width: 400px;">
+            <form name="myForm" class="text-center" action="/Admin/HomeAdmin/Login" returnUrl ="@Request.QueryString["ReturnUrl"]" enctype = "multipart/form-data" onsubmit="return  validateForm()" method="post" style="margin: 0 auto; width: 400px;">
                 <div class="form-group">
                     <input type="text" class="form-control" name="user" placeholder="Enter account">
                     <p id="validate-account" style="color: red;" class="form-text"></p>
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" name="pass" placeholder="Mật khẩu">
                     <p id="validate-password" style="color: red;" class="form-text"></p>
                 </div>
                 <br>
@@ -49,5 +122,5 @@
             }
         }
     </script>
-}
+}*@
 

@@ -29,20 +29,20 @@
     {
         <tr>
             <th scope="row">
-                @Html.DisplayFor(modelItem => item.FeedbackID)
+                @Html.DisplayFor(modelItem => item.ID)
             </th>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
+                @Html.DisplayFor(modelItem => item.NgayTao)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaKH)
             </td>
             <td>
                 <div style="display: flex;">
-                    <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Feedback", new { id = item.FeedbackID })'"><i class="fa fa-info-circle"></i></button>&nbsp;               
+                    <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Feedback", new { id = item.ID })'"><i class="fa fa-info-circle"></i></button>&nbsp;               
                 </div>
             </td>
         </tr>

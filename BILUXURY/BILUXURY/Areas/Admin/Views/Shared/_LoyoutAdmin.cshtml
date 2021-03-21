@@ -21,6 +21,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <style>
+        .row {
+            height: 100vh;
+        }
+
         .nav-link {
             background-color: aquamarine;
         }
@@ -41,53 +45,66 @@
         .on-more {
             display: none;
         }
+
+        .bg-linear {
+            background-color: #1e1e2d;
+        }
+
+        .list-group-item {
+            color: #a2a3b7;
+            background-color: #1e1e2d;
+        }
+
+        th {
+            color: darkgreen;
+        }
     </style>
 
     <title>Quản lý BiLuxury</title>
 </head>
 
 <body>
-    <nav style="position: relative;" class="navbar navbar-expand-sm border">
-        <a class="navbar-brand" href="#" style="color: darkcyan;">Bi Luxury</a>
-        <div style="position: absolute; right: 20px;" class="collapse navbar-collapse">
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    <i class="fas fa-user"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="EditProfile.html"><i class="fa fa-user" aria-hidden="true"> User profile</i></a>
-                    <a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt"> Logout</i></a>
+    <div class="container-fluid" style="background-color:white;">
+        <nav style="position: relative;" class="navbar navbar-expand-sm border">
+            <a class="navbar-brand" href="@Url.Action("Index", "HomeAdmin")" style="color: darkcyan;"><img class="img-fluid" src="~/imgs/logo.png" alt="logo-icon" width="100"></a>
+            <div style="position: absolute; right: 20px;" class="collapse navbar-collapse">
+                <div class="dropdown">
+                    <button type="button" class="btn" id="dropdown-toggle-active">
+                        <i class="fas fa-user"></i> <i class="fas fa-chevron-down down2"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item item1" href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-user" aria-hidden="true"> Client</i></a>
+                        <a class="dropdown-item item1" href="EditProfile.html"><i class="fa fa-user" aria-hidden="true"> User profile</i></a>
+                        <a class="dropdown-item item1" href="/Admin/HomeAdmin/SignOut"><i class="fas fa-sign-out-alt"> Logout</i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2 border reset-padding">
+            <div class="col-sm-2 border reset-padding bg-linear">
                 <div class="input-group rounded" style="padding: 15px;">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-dark">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <button onclick="location.href='@Url.Action("Index", "HomeAdmin")'" class="list-group-item list-group-item-action"><i class="fas fa-home"></i> Home</button>
                 </div>
                 <div class="list-group">
+
                     <button onclick="location.href='@Url.Action("Index", "News")'" class="list-group-item list-group-item-action"><i class="fas fa-table"></i> Quản lý bài viết</button>
                     <button onclick="location.href='@Url.Action("index", "QLSanPham")'" class="list-group-item list-group-item-action"><i class="far fa-edit"></i> Quản lý sản phẩm</button>
-                    <button onclick="location.href='@Url.Action("index", "QLNhanVien")'" class="list-group-item list-group-item-action"><i class="far fa-user"></i> Quản lý nhân viên</button>
+                    <button onclick="location.href='@Url.Action("index", "QLTaiKhoan")'" class="list-group-item list-group-item-action"><i class="far fa-user"></i> Quản lý tài khoản</button>
                     <button onclick="location.href='@Url.Action("index", "QLKhachHang")'" class="list-group-item list-group-item-action"><i class="fas fa-user-friends"></i> Quản lý khách hàng</button>
                     <button onclick="location.href='@Url.Action("index", "QLDonHang")'" class="list-group-item list-group-item-action"><i class="fas fa-file-invoice"></i> Đơn hàng</button>
-                    <button onclick="location.href='@Url.Action("index", "QLKho")'" class="list-group-item list-group-item-action"><i class="fas fa-box-open"></i> Kho</button>
-                    <button onclick="location.href='@Url.Action("index", "ThongKe")'" class="list-group-item list-group-item-action"><i class="fas fa-trophy"></i> Thống kê</button>
-                    <button id="on-active" class="list-group-item list-group-item-action"><i class="fas fa-chevron-down"></i> Xem thêm...</button>
+                    <button onclick="location.href='@Url.Action("index", "QLNhapHang")'" class="list-group-item list-group-item-action"><i class="fas fa-box-open"></i> Quản lý nhập hàng</button>
+                    <button id="on-active" class="list-group-item list-group-item-action"><i class="fas fa-chevron-down down1"></i> Xem thêm...</button>
                     <button onclick="location.href='@Url.Action("index", "IMAGES")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-photo-video"></i> Thư viện ảnh</button>
                     <button onclick="location.href='@Url.Action("index", "NhaCungCap")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-building"></i> Nhà cung cấp</button>
                     <button onclick="location.href='@Url.Action("index", "LoaiSP")'" class="list-group-item list-group-item-action on-more"><i class="far fa-newspaper"></i> Loại sản phẩm</button>
                     <button onclick="location.href='@Url.Action("index", "Feedback")'" class="list-group-item list-group-item-action on-more"><i class="fas fa-comments"></i>Phản hồi từ khách hàng</button>
                 </div>
             </div>
-            <div class="col-sm-10">
-                <div class="main-body">
+            <div class="col-sm-10" style=" background: beige;">
+                <div class="main-body" style="background-color: #E4E6EF; margin-top: 15px; padding-left: 15px; border-radius: 15px;">
                     @RenderBody()
                 </div>
             </div>
@@ -96,12 +113,19 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @RenderSection("editor", required: false)
+    @RenderSection("upload", required: false)
+    @RenderSection("LoadDataToSelect", required: false)
 
     <script>
         $(document).ready(function () {
             $("#on-active").click(function () {
-                $(".fa-chevron-down").toggle("fast");
+                $(".down1").toggle("fast");
                 $(".on-more").toggle("slow");
+            });
+            $("#dropdown-toggle-active").click(function () {
+                $(".down2").toggle("fast");
+                $(".dropdown-menu").toggle("fast");
             });
         });
     </script>

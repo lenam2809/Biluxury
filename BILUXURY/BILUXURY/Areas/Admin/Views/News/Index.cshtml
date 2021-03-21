@@ -15,52 +15,34 @@
             Title
         </th>
         <th>
-            NewImage
-        </th>
-        <th>
-            Nội dung
+            Ngày tạo
         </th>
         <th>
             Người tạo
-        </th>
-        <th>
-            ViewCount
-        </th>
-        <th>
-            Mã sản phẩm
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NewImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViewCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSP)
-            </td>
-            <td>
-                <div style="display: flex;">
-                    <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "News", new { id = item.NewID })'"><i class="fa fa-info-circle"></i></button>&nbsp;
-                    <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "News", new { id = item.NewID })'"><i class="fas fa-edit"></i></button>&nbsp;
-                    <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "News", new { id = item.NewID })'"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TieuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayTao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NguoiTao)
+    </td>
+    <td>
+        <div style="display: flex;">
+            <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "News", new { id = item.ID })'"><i class="fa fa-info-circle"></i></button>&nbsp;
+            <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "News", new { id = item.ID })'"><i class="fas fa-edit"></i></button>&nbsp;
+            <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "News", new { id = item.ID })'"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </td>
+</tr>
     }
 
 </table>

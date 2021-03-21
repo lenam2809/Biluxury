@@ -1,8 +1,5 @@
 ﻿using BILUXURY.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BILUXURY.Controllers
@@ -15,19 +12,19 @@ namespace BILUXURY.Controllers
         public ActionResult Index()
         {
             var dsnews = (from p in data.NEWs
-                         select p).ToList();
+                          select p).ToList();
             ViewBag.dsnews = dsnews;
             return View();
         }
 
         public ActionResult Detail(int id)
         {
-            var news = data.NEWs.Single(s => s.NewID == id);
-            ViewBag.id = news.NewID;
-            ViewBag.title = news.Title;
-            ViewBag.image = news.NewImage;
-            ViewBag.content = news.Description;
-            ViewBag.created = news.CreatedBy;
+            var news = data.NEWs.Single(s => s.ID == id);
+            ViewBag.id = news.ID;
+            ViewBag.title = news.TieuDe;
+            ViewBag.image = news.LinkAnh;
+            ViewBag.content = news.NoiDung;
+            ViewBag.created = news.NgayTao;
 
             var dsnews = (from p in data.NEWs
                           select p).ToList();

@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var listnews = ViewBag.news;
     var listsp = ViewBag.lsp;
+    var listnews = ViewBag.news;
 }
 
 <div>
@@ -18,18 +18,17 @@
 
     <div class="container">
         <div class="row" style="padding-top: 10px;">
-
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-1">
-                        <img id="test" src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
-                        <img src="~/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
+                        <img id="test" src="@ViewBag.image" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
+                        <img src="~/imgs/products/Ao polo/polo1.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
                         <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
                         <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
                         <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
                     </div>
                     <div class="col-11 ps-1">
-                        <img id="result" src="/imgs/somi.png" class="img-fluid ms-4 ps-2" style="max-width: 460px; max-height: 690px;" alt="...">
+                        <img id="result" src="@ViewBag.image" class="img-fluid ms-4 ps-2" style="max-width: 460px; max-height: 690px;" alt="...">
                     </div>
                     <div class="btn"><h5>Mô tả sản phẩm</h5></div>
                     <div class="content">
@@ -43,7 +42,11 @@
             <div class="col-md-4">
                 <div>
                     <h3>@ViewBag.tensp</h3>
-                    <p>Giá: <span class="fw-bold">@ViewBag.gia&#8363;</span></p>
+                    @{
+                        decimal gia = @ViewBag.Gia;
+                        var result = gia.ToString("#,###");
+                    }
+                    <p>Giá: <span class="fw-bold">@result &#8363;</span></p>
                     <p>Chất liệu: @ViewBag.cl</p>
                     <p>Kiểu dáng: @ViewBag.kd</p>
 
@@ -61,13 +64,12 @@
                     <br />
                     <div>
                         <label>Số lượng: </label>
-                        <input type="number" value="1" />
+                        <input id="number" type="number" value="1" />
                     </div>
                     <br />
-
                     <div class="row">
                         <div class="col-md-5">
-                            <button type="button" onclick="location.href='@Url.Action("AddItem", "Cart", new { masp = ViewBag.masp, soluong = 1 })'" class="btn btn-dark">Thêm vào giỏ</button>
+                            <button type="button" id="btnAddItem" @*onclick="location.href='@Url.Action("AddItem", "Cart", new { masp = ViewBag.masp, soluong = 1 })'"*@ class="btn btn-dark">Thêm vào giỏ</button>
                         </div>
                         <div class="col-md-5">
                             <button type="button" class="btn btn-danger">Mua ngay</button>
@@ -77,25 +79,24 @@
             </div>
 
             <div class="col-md-3">
-                @foreach (var itemNew in listnews)
+                @foreach (var item in listnews)
                 {
                     <div class="card mb-3 my-2" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-6">
-                                <img src="/imgs/dog.jpg" class="img-thumbnail" alt="...">
+                                <img src="@item.LinkAnh" class="img-thumbnail" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    <p class="card-title fw-bold" style="font-size: small;">@itemNew.Title</p>
-                                    <p><small class="text-muted"><i class="fas fa-user"></i>  @itemNew.CreatedBy</small></p>
-                                    <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = itemNew.NewID })'"><i class="fas fa-arrow-right"></i></button>
+                                    <p class="card-title fw-bold" style="font-size: small;">@item.TieuDe</p>
+                                    <p><small class="text-muted"><i class="fas fa-user"></i>  @item.NguoiTao</small></p>
+                                    <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.ID })'"><i class="fas fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
             </div>
-
         </div>
     </div>
 
@@ -108,7 +109,7 @@
             @foreach (var itemsp in listsp)
             {
                 <div class="card col-3 text-center" style="padding: 50px 25px 5px 25px; border: none;">
-                    <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+                    <img src="@itemsp.LinkAnh" class="card-img-top" alt="...">
                     <div class="card-body text-lg-center">
                         <div class="product-info">
                             <div class="product-title" style="font-size: small;">
@@ -127,5 +128,17 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+
+        $('#btnAddItem').off('click').on('click', function () {
+            var msp = @ViewBag.masp;
+            var sl = $('#number').val();
+            window.location.href = '/Cart/AddItem/' + msp + '/' + sl;
+        });
+        
+    </script>
+    }
 
 

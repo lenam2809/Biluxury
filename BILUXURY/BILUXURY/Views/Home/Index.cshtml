@@ -7,7 +7,7 @@
     var listsp2 = ViewBag.listsp2;
     var news = ViewBag.news;
 }
-
+<p>Tổng số khách hàng truy cập: @ApplicationInstance.Application["Totaluser"]</p>
 <div class="position-relative overflow-hidden p-5 text-center bg-main">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 font-weight-normal" style="color: cornsilk;">BILUXURY</h1>
@@ -22,10 +22,10 @@
     @foreach (var item in listlsp)
     {
         <div class="card cards">
-            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <img src="@item.Image" class="card-img-top" alt="...">
             <div class="card-body text-lg-center">
                 <h5 class="card-title">@item.TenLoaiSP</h5>
-                <a href="#" onclick="location.href='@Url.Action("Index", "ViewSanPham")'" class="btn btn-outline-secondary">Xem thêm</a>
+                <a href="@Url.Action("DsSP", "ViewSanPham", new { id = item.MaLoaiSP})" class="btn btn-outline-secondary">Xem thêm</a>
             </div>
         </div>
     }
@@ -54,14 +54,18 @@
     @foreach (var item in listsp)
     {
         <div class="card cards">
-            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <img src="@item.LinkAnh" class="card-img-top" alt="...">
             <div class="card-body text-lg-center">
                 <div class="product-info">
                     <div class="product-title" style="font-size: small;">
-                        <a class="a-product" href="#">@item.TenSP</a>
+                        <a class="a-product" href="@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })">@item.TenSP</a>
                     </div>
                     <div class="product-price">
-                        <span class="current-price">@item.Gia</span>
+                        @{
+                            decimal gia = @item.Gia;
+                            var result = gia.ToString("#,###");
+                        }
+                        <span class="current-price">@result &#8363;</span>
                     </div>
                     <div class="d-grid gap-2">
                         <button type="button" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
@@ -76,14 +80,18 @@
     @foreach (var item in listsp2)
     {
         <div class="card cards">
-            <img src="~/imgs/somi.png" class="card-img-top" alt="...">
+            <img src="@item.LinkAnh" class="card-img-top" alt="...">
             <div class="card-body text-lg-center">
                 <div class="product-info">
                     <div class="product-title" style="font-size: small;">
-                        <a class="a-product" href="#">@item.TenSP</a>
+                        <a class="a-product" href="@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })">@item.TenSP</a>
                     </div>
                     <div class="product-price">
-                        <span class="current-price">@item.Gia</span>
+                        @{
+                            decimal gia = @item.Gia;
+                            var result = gia.ToString("#,###");
+                        }
+                        <span class="current-price">@result &#8363;</span>
                     </div>
                     <div class="d-grid gap-2">
                         <button type="button" onclick="location.href='@Url.Action("Detail", "ViewSanPham", new { id = item.MaSP })'" class="btn btn-dark"><i style="margin-right: 15px;" class="fas fa-eye"></i>Xem chi tiết</button>
@@ -122,15 +130,15 @@
             {
                 <div class="col" style=" color: black; padding: 0px 15px;">
                     <div class="card">
-                        <img src="@item.NewImage" class="card-img-top" alt="...">
+                        <img src="@item.LinkAnh" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="product-info">
                                 <div class="product-title">
-                                    <a class="a-product a-new-title" href="#">@item.Title</a>
+                                    <a class="a-product a-new-title" href="@Url.Action("Detail", "ViewNews", new { id = item.ID })">@item.TieuDe</a>
                                 </div>
                                 <br>
                                 <div class="new-price">
-                                    <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.NewID })'">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></button>
+                                    <button class="btn btn-outline-secondary" onclick="location.href='@Url.Action("Detail", "ViewNews", new { id = item.ID })'">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>

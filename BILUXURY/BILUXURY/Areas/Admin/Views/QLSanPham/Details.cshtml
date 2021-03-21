@@ -17,8 +17,8 @@
             <th scope="col">Giá</th>
             <th scope="col">Chất liệu</th>
             <th scope="col">Kiểu dáng</th>
-            <th scope="col">Xuất xứ</th>
-            <th scope="col">Notes</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Khuyến mãi</th>
             <th scope="col">Số lượng</th>
             <th></th>
         </tr>
@@ -32,8 +32,8 @@
             <td>@Html.DisplayFor(model => model.Gia)</td>
             <td>@Html.DisplayFor(model => model.ChatLieu)</td>
             <td>@Html.DisplayFor(model => model.KieuDang)</td>
-            <td>@Html.DisplayFor(model => model.XuatXu)</td>
-            <td>@Html.DisplayFor(model => model.ImageLink)</td>
+            <td>@Html.DisplayFor(model => model.LinkAnh)</td>
+            <td>@Html.DisplayFor(model => model.KhuyenMai)</td>
             <td>@Html.DisplayFor(model => model.SoLuong)</td>
             <td>
                  <button type="button" title="edit" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "QLSanPham", new { id = Model.MaSP })'"><i class="fas fa-Edit"></i> Edit</button>
