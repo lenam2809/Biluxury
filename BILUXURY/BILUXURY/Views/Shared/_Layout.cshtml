@@ -140,7 +140,6 @@
                             <a class="nav-link open dropdown" href="#">QUẦN NAM</a>
                             <ul class="sub-menu">
                                 <li><a class="nav-link" href="/ViewSanPham/DsSP?id=5">Quần âu nam</a></li>
-                                <li><a class="nav-link" href="/ViewSanPham/DsSP?id=9">Quần jean nam</a></li>
                                 <li><a class="nav-link" href="/ViewSanPham/DsSP?id=10">Quần ngố nam</a></li>
                                 <li><a class="nav-link" href="/ViewSanPham/DsSP?id=10">Quần short nam</a></li>
                             </ul>
@@ -148,14 +147,15 @@
                         <li class="nav-item">
                             <a class="nav-link open dropdown" href="#">PHỤ KIỆN NAM</a>
                             <ul class="sub-menu">
-                                <li><a class="nav-link" href="#">Giày da nam</a></li>
+                                <li><a class="nav-link" href="/ViewSanPham/DsSP?id=11">Dây lưng nam</a></li>
+                                <li><a class="nav-link" href="/ViewSanPham/DsSP?id=12">Giày da nam</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">NỔI BẬT</a>
+                            <a class="nav-link" href="/ViewNews/Index">NỔI BẬT</a>
                         </li>
                         <li class="nav-item">
-                            <form action="/SearchInfo" method="get" class="d-flex">
+                            <form action="/ViewSanPham/Index" method="get" class="d-flex">
                                 <input id="nav-search" class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." name="searchString" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
                             </form>
@@ -166,7 +166,7 @@
                     <a onclick="location.href='@Url.Action("Index", "Cart")'" style="text-decoration: none; color: black;">
                         <div class="hd-link-icon">
                             <i class="fas fa-cart-plus fa-2x"></i>
-                        </div>
+                        </div>                     
                         <div>
                             <div class="hd-link-title">
                                 Giỏ hàng

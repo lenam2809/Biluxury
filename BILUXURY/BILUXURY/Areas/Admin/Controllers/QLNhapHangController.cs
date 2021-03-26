@@ -25,6 +25,12 @@ namespace BILUXURY.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult getDataSP()
+        {
+            var sp = from e in data.SANPHAMs select new { e.MaSP, e.TenSP };
+            return Json(sp.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         // POST: Admin/QLNhapHang/Create
         [HttpPost]
         public ActionResult Create(NhapHang collection)

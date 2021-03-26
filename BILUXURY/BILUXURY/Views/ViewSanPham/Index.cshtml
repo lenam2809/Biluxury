@@ -24,6 +24,16 @@
         justify-content: center;
     }
 </style>
+<div class="row">
+    <div class="col-10"></div>
+    <div class="col-2">
+        <select id="sapxep" class="form-select" style="box-shadow: 0 0 1px #000;" aria-label="Default select example">
+            <option value="0" selected>Sắp xếp</option>
+            <option value="1">Giá tăng dần</option>
+            <option value="2">Giá giảm dần</option>
+        </select>
+    </div>
+</div>
 
 <div class="row justify-content-center" style="padding-top: 20px;">
     @foreach (var item in Model)
@@ -65,16 +75,11 @@
         UlElementClasses = new string[] { "pagination" },
         LiElementClasses = new string[] { "page-item" },
     })
-
-
-@*@section scripts {
+@section Scripts {
     <script>
-
-        $(document).ready(function () {           
-            $('.card').mouseover(function () {
-                $('.card').children("#btn-test").show();
-            });
+        $('#sapxep').change(function () {
+            var sort = $(this).find(':selected').val();
+            window.location.href = "/ViewSanPham/Index?sort=" + sort;
         });
-
     </script>
-}*@
+}

@@ -26,14 +26,14 @@
         <div class="form-group">
             @Html.Label("Nhà cung cấp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" onchange="getValue()" id="departmentsDropdownNCC" name="MaNCC"></select>          
+                <select class="form-control" onchange="getValuencc()" id="departmentsDropdownNCC" name="MaNCC"></select>          
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" onchange="getValue()" id="departmentsDropdownLSP" name="MaLoaiSP"></select>
+                <select class="form-control" onchange="getValuelsp()" id="departmentsDropdownLSP" name="MaLoaiSP"></select>
             </div>
         </div>
 
@@ -148,10 +148,10 @@
         });
 
 
-        function getValue() {
+        function getValuencc() {
             var myValNCC = $("#departmentsDropdownNCC").val();
         }
-        function getValue() {
+        function getValuelsp() {
             var myValLSP = $("#departmentsDropdownLSP").val();
         }
     </script>

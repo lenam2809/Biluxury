@@ -6,6 +6,7 @@
     var listnews = ViewBag.news;
 }
 
+
 <div>
     <div class="container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -21,14 +22,24 @@
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-1">
-                        <img id="test" src="@ViewBag.image" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
-                        <img src="~/imgs/products/Ao polo/polo1.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
-                        <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
-                        <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
-                        <img src="/imgs/somi.png" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px;" alt="...">
+                        <a id="test2" href="#" data-image="@ViewBag.image" data-zoom-image="@ViewBag.image">
+                            <img src="@ViewBag.image" class="img-fluid mb-3" style="max-width: 60px; max-height: 90px; padding-bottom: 5px;" alt="...">
+                        </a>
+                        <a href="#" class="img-fluid mb-3" data-image="@ViewBag.image" data-zoom-image="@ViewBag.image">
+                            <img src="/imgs/details-imgs/a2.png" style="max-width: 60px; max-height: 90px; padding-bottom: 5px;" alt="...">
+                        </a>
+                        <a href="#" class="img-fluid mb-3" data-image="@ViewBag.image" data-zoom-image="@ViewBag.image">
+                            <img src="/imgs/details-imgs/a2.png" style="max-width: 60px; max-height: 90px; padding-bottom: 5px;" alt="...">
+                        </a>
+                        <a href="#" class="img-fluid mb-3" data-image="@ViewBag.image" data-zoom-image="@ViewBag.image">
+                            <img src="/imgs/details-imgs/a3.png" style="max-width: 60px; max-height: 90px; padding-bottom: 5px;" alt="...">
+                        </a>
+                        <a id="test" href="#" data-image="@ViewBag.image" data-zoom-image="@ViewBag.image">
+                            <img class="img-fluid mb-3" src="~/imgs/details-imgs/sizeAo.png" style="max-width: 60px; max-height: 90px;" alt="...">
+                        </a>
                     </div>
                     <div class="col-11 ps-1">
-                        <img id="result" src="@ViewBag.image" class="img-fluid ms-4 ps-2" style="max-width: 460px; max-height: 690px;" alt="...">
+                        <img id="result" src="@ViewBag.image" data-zoom-image="@ViewBag.image" class="img-fluid ms-4 ps-2" style="max-width: 460px; max-height: 690px;" alt="...">
                     </div>
                     <div class="btn"><h5>Mô tả sản phẩm</h5></div>
                     <div class="content">
@@ -36,7 +47,15 @@
                             Áo làm từ 100% Polyester là kết cấu sợi vải bền chắc, dẻo dai, phòng ngừa vi khuẩn và kiểm soát nhiệt tốt. Vải chống thấm nước, cản gió, thoáng khí, ấm áp tạo cảm giác thoải mái khi mặc cùng các trang phục khác
                         </p>
                     </div>
+                    <form action="/ViewSanPham/Comment">
+                        <div class="form-group">
+                            <input style="display: none;" name="id" value="@ViewBag.id" />
+                            <textarea class="form-control" rows="5" id="comment" placeholder="Comment" name="comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </form>
                 </div>
+                
             </div>
 
             <div class="col-md-4">
@@ -64,7 +83,7 @@
                     <br />
                     <div>
                         <label>Số lượng: </label>
-                        <input id="number" type="number" value="1" />
+                        <input id="number" type="number" value="1" min="1" />
                     </div>
                     <br />
                     <div class="row">
@@ -72,7 +91,7 @@
                             <button type="button" id="btnAddItem" @*onclick="location.href='@Url.Action("AddItem", "Cart", new { masp = ViewBag.masp, soluong = 1 })'"*@ class="btn btn-dark">Thêm vào giỏ</button>
                         </div>
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-danger">Mua ngay</button>
+                            <button id="btnThanhToan" type="button" class="btn btn-success">Mua Ngay</button>
                         </div>
                     </div>
                 </div>
@@ -130,15 +149,38 @@
 </div>
 
 @section Scripts {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/2.2.3/jquery.elevatezoom.min.js"></script>
     <script>
+
+        $("#result").elevateZoom({
+            zoomType: "lens",
+            lensShape: "round",
+            lensSize: 300
+        });
+
+        $('#test').on('click', function (event) {
+            $('#result').attr('src', '/imgs/details-imgs/sizeAo.png');
+            $('.zoomLens').attr('style', 'background - image: url("/imgs/details-imgs/sizeAo.png")');
+        });
+        $('#test2').on('click', function (event) {
+            $('#result').attr('src', '@ViewBag.image');
+        });
+
 
         $('#btnAddItem').off('click').on('click', function () {
             var msp = @ViewBag.masp;
             var sl = $('#number').val();
             window.location.href = '/Cart/AddItem/' + msp + '/' + sl;
         });
-        
+
+        $('#btnThanhToan').off('click').on('click', function () {
+            var msp = @ViewBag.masp;
+            var sl = $('#number').val();
+            window.location.href = '/Cart/MuaNgay/' + msp + '/' + sl;
+        });
+
     </script>
-    }
+}
 
 

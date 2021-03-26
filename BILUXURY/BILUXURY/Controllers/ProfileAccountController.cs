@@ -12,9 +12,9 @@ namespace BILUXURY.Controllers
         DataClasses1DataContext data = new DataClasses1DataContext();
 
         // GET: ProfileAccount/Index/5
-        public ActionResult Index(int id)
+        public ActionResult Index(string email)
         {
-            var profile = data.KHACHHANGs.FirstOrDefault(p => p.MaKH == id);
+            var profile = data.KHACHHANGs.FirstOrDefault(p => p.Email == email);
             ViewBag.TenKH = profile.TenKH;
             ViewBag.MaKH = profile.MaKH;
             ViewBag.NgaySinh = profile.NgaySinh;
@@ -24,26 +24,24 @@ namespace BILUXURY.Controllers
             ViewBag.Email = profile.Email;
 
 
-            var JoinDH = from d in data.DONHANGs
+            var JoinDH0 = from d in data.DONHANGs
                          join c in data.CHITIETDONHANGs
                          on d.MaDH equals c.MaDH
-                         select new { d.MaKH, c.MaSP, c.SoLuong };
+                         select new { d.MaKH, c.MaSP, c.SoLuong, d.NgayDH };
+            var JoinDH = JoinDH0.Where(s => s.MaKH == profile.MaKH);
 
             var JoinSP = from a in JoinDH
                          join s in data.SANPHAMs
                          on a.MaSP equals s.MaSP
-                         select new LSThanhToan { MaKH = a.MaKH, MaSP = a.MaSP, TenSP = s.TenSP, SoLuong = a.SoLuong, Gia = Convert.ToDecimal(s.Gia) };
-            var chitietDH = JoinSP.Where(p => p.MaSP == id);
-            ViewBag.donhang = chitietDH;
-
-
+                         select new LSThanhToan { TenSP = s.TenSP, SoLuong = a.SoLuong, Gia = Convert.ToDecimal(s.Gia), NgayDH = (DateTime)a.NgayDH };
+            ViewBag.donhang = JoinSP;
             return View();
         }
 
 
         public ActionResult Edit(int id)
         {
-            var proffile = data.KHACHHANGs.Where(p => p.MaKH == id);
+            var proffile = data.KHACHHANGs.FirstOrDefault(p => p.MaKH == id);
             return View(proffile);
         }
 
@@ -62,7 +60,7 @@ namespace BILUXURY.Controllers
                 Sp.GioiTinh = collection.GioiTinh;
                 Sp.Phone = collection.Phone;
                 data.SubmitChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { email = collection.Email });
             }
             catch
             {

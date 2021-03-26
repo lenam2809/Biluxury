@@ -1,21 +1,39 @@
-﻿@model IEnumerable<BILUXURY.Models.DONHANG>
+﻿
+@model PagedList.IPagedList<BILUXURY.Models.DONHANG>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
 }
+
+<style>
+    .page-item > a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        text-decoration: none;
+    }
+
+    .center {
+        justify-content: center;
+    }
+</style>
+
 <h2>Quản lý đơn hàng</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
 <table class="table table-striped table-hover" style="border: 1px solid black; margin-top: 15px;">
     <tr>
         <th>
             Mã khách hàng
         </th>
         <th>
-            Ngày đặt hàng
+            @Html.ActionLink("Ngày đặt hàng ", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @style = "color: darkgreen; text-decoration: none;" })<i class="fas fa-caret-down"></i>
         </th>
         <th>
             Mã shipper
@@ -26,24 +44,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaKH)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NgayDH)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaShipper)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsActive)
-    </td>
-    <td>
-        <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLDonHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaShipper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "QLDonHang", new { id = item.MaKH })'"><i class="fa fa-info-circle"></i></button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model,
+    page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 10,
+        ContainerDivClasses = new string[] { "pagination", "center" },
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" },
+    })

@@ -11,7 +11,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <i class="fas fa-user"></i>
-                        <a class="navbar-brand nav-hover" href="/ProfileAccount/Index?id=1">  Chào, @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</a>
+                        <a class="navbar-brand nav-hover" href="/ProfileAccount/Index?email=@HttpContext.Current.User.Identity.Name">  Chào, @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</a>
                     </li>
                     <li>
                         <i class="fas fa-sign-in-alt"></i>

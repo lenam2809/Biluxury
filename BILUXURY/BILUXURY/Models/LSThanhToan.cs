@@ -12,5 +12,6 @@ namespace BILUXURY.Models
         public string TenSP { get; set; }
         public int SoLuong { get; set; }
         public decimal Gia { get; set; }
+        public DateTime NgayDH { get; set; }
     }
 }

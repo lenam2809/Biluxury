@@ -1,4 +1,6 @@
 ﻿using BILUXURY.Models;
+using PagedList;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,11 +13,25 @@ namespace BILUXURY.Areas.Admin
         DataClasses1DataContext data = new DataClasses1DataContext();
 
         // GET: Admin/QLSanPham
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortOrder, int pageSize = 10)
         {
-            var dssp = (from p in data.SANPHAMs
-                        select p).ToList();
-            return View(dssp);
+            if (page == null) page = 1;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "tang_dan" : "";
+            var links = from p in data.SANPHAMs
+                        select p;
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "tang_dan":
+                    links = links.OrderByDescending(s => s.Gia);
+                    break;
+                // 3.5 Mặc định thì sẽ sắp tăng
+                default:
+                    links = links.OrderBy(s => s.Gia);
+                    break;
+            }
+            int pageNumber = (page ?? 1);
+            return View(links.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/QLSanPham/Details/5

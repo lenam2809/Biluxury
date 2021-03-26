@@ -31,9 +31,9 @@
                     {
                         <tr>
                             <td>@item.SanPham.TenSP</td>
-                            <td><input type="number" class="soluong" data-id="@item.SanPham.MaSP" value="@item.SoLuong" /></td>
+                            <td><input type="number" class="soluong" data-id="@item.SanPham.MaSP" value="@item.SoLuong"/></td>
                             <td>@item.SanPham.Gia</td>
-                            <td>@(item.SanPham.Gia * item.SoLuong)</td>
+                            <td class="tongtien">@(item.SanPham.Gia * item.SoLuong)</td>
                             <td>
                                 <button id="btn-delete" data-id="@item.SanPham.MaSP" type="button" title="Delete" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </td>
@@ -58,7 +58,7 @@
                 <button type="button" id="deleteCart" class="btn btn-danger">Xóa giỏ hàng</button>
             </div>
             <div class="col-md-2">
-                <p>Tổng tiền: 0</p>
+                <p>Tổng tiền: @ViewBag.tongtien</p>
             </div>
 
             <div class="col-md-2">
@@ -70,8 +70,13 @@
 
     @section scripts {
         <script>
-        var tongtien = 0;
-        @*@foreach (var item in Model)
+            //$(document).ready(function () {
+            //    var tongtien = parseInt($('.tongtien').text);
+            //    alert(tongtien);
+            //});
+            
+
+        @*@foreach (var item in tongtien)
         {
             tongtien  +  @item.SoLuong;
         }*@

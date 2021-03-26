@@ -1,9 +1,27 @@
-﻿
+﻿@model PagedList.IPagedList<BILUXURY.Models.SANPHAM>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "DsSP";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var sp = ViewBag.sp;
 }
+<style>
+    .page-item > a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        text-decoration: none;
+    }
+
+    .center {
+        justify-content: center;
+    }
+</style>
 
 <div class="container">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -16,6 +34,7 @@
         <h5>@ViewBag.lSp</h5>
     </div>
 </div>
+
 <div class="row justify-content-center" style="padding-top: 50px;">
     @foreach (var item in sp)
     {
@@ -41,4 +60,16 @@
         </div>
     }
 </div>
+
+@Html.PagedListPager(Model,
+    page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 10,
+        ContainerDivClasses = new string[] { "pagination", "center" },
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" },
+    })
 

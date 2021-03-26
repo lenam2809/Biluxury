@@ -1,9 +1,28 @@
-﻿@model IEnumerable<BILUXURY.Models.NEW>
-
+﻿
+@model PagedList.IPagedList<BILUXURY.Models.NEW>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LoyoutAdmin.cshtml";
 }
+
+<style>
+    .page-item > a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        text-decoration: none;
+    }
+
+    .center {
+        justify-content: center;
+    }
+</style>
 
 <h2>Quản lý bài viết</h2>
 
@@ -15,7 +34,7 @@
             Title
         </th>
         <th>
-            Ngày tạo
+            @Html.ActionLink("Ngày tạo ", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @style = "color: darkgreen; text-decoration: none;" })<i class="fas fa-caret-down"></i>
         </th>
         <th>
             Người tạo
@@ -25,24 +44,35 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.TieuDe)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NgayTao)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NguoiTao)
-    </td>
-    <td>
-        <div style="display: flex;">
-            <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "News", new { id = item.ID })'"><i class="fa fa-info-circle"></i></button>&nbsp;
-            <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "News", new { id = item.ID })'"><i class="fas fa-edit"></i></button>&nbsp;
-            <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "News", new { id = item.ID })'"><i class="fas fa-trash-alt"></i></button>
-        </div>
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiTao)
+            </td>
+            <td>
+                <div style="display: flex;">
+                    <button type="button" title="Details" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "News", new { id = item.ID })'"><i class="fa fa-info-circle"></i></button>&nbsp;
+                    <button type="button" title="Edit" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "News", new { id = item.ID })'"><i class="fas fa-edit"></i></button>&nbsp;
+                    <button type="button" title="Delete" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "News", new { id = item.ID })'"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </td>
+        </tr>
     }
 
 </table>
+@Html.PagedListPager(Model,
+    page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 10,
+        ContainerDivClasses = new string[] { "pagination", "center" },
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" },
+    })

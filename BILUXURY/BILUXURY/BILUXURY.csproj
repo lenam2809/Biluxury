@@ -142,7 +142,6 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileAccountController.cs" />
-    <Compile Include="Controllers\SearchInfoController.cs" />
     <Compile Include="Controllers\ViewNewsController.cs" />
     <Compile Include="Controllers\ViewSanPhamController.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,6 +176,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="imgs\backGround\bg2.jpg" />
     <Content Include="imgs\backGround\wallpaperflare.com_wallpaper.jpg" />
+    <Content Include="imgs\details-imgs\a1.png" />
+    <Content Include="imgs\details-imgs\a2.png" />
+    <Content Include="imgs\details-imgs\a3.png" />
+    <Content Include="imgs\details-imgs\sizeAo.png" />
     <Content Include="imgs\img2.png" />
     <Content Include="imgs\img3.png" />
     <Content Include="imgs\img4.png" />
@@ -410,7 +413,6 @@
     <Content Include="Views\ViewNews\Index.cshtml" />
     <Content Include="Views\ViewNews\Detail.cshtml" />
     <Content Include="Views\ViewSanPham\DsSP.cshtml" />
-    <Content Include="Views\SearchInfo\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -427,6 +429,7 @@
     <Content Include="Views\ProfileAccount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\FormSelectData.cshtml" />
     <Content Include="Views\Cart\ThanhToan.cshtml" />
+    <Content Include="Views\ProfileAccount\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
